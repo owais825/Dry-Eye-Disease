@@ -129,7 +129,7 @@ The dataset shows moderate signal but noticeable class imbalance.
 
 <p>
 This project builds a machine-learning pipeline to predict Dry Eye Disease using health and lifestyle data.  
-Random Forest performed best, detecting most true dry eye cases but with moderate precision.  
+SVM performed best, detecting most true dry eye cases but with moderate precision.  
 Lifestyle factors (sleep, stress, BP, screen time) show meaningful correlation with DED risk.
 </p>
 
