@@ -109,12 +109,12 @@ jupyter notebook
 <h2 style="color:#34495e;">📊 Results</h2>
 
 <div style="background:#ecf0f1; padding:15px; border-left:4px solid #3498db; margin-bottom:20px;">
-  <p><strong>Best Model: Random Forest</strong></p>
+  <p><strong>Best Model: SVM</strong></p>
   <ul>
-    <li><strong>Accuracy:</strong> ~70.4%</li>
-    <li><strong>Recall (DED cases):</strong> ~93.6%</li>
-    <li><strong>Precision:</strong> ~71.2%</li>
-    <li><strong>Weighted F1 Score:</strong> ~0.66</li>
+    <li><strong>Accuracy:</strong> ~70.8%</li>
+    <li><strong>Recall (DED cases):</strong> ~96.7%</li>
+    <li><strong>Precision:</strong> ~70%</li>
+    <li><strong>F1 Score:</strong> ~0.81</li>
   </ul>
 </div>
 
