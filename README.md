@@ -1,79 +1,167 @@
 Dry Eye Disease Prediction
-Introduction
+📌 Introduction
 
-Dry Eye Disease (DED) is a common ocular surface condition in which the tear film becomes unstable, leading to eye discomfort and visual disturbance
-ncbi.nlm.nih.gov
-my.clevelandclinic.org
-. Symptoms can include burning, itching, redness, and blurred vision as the eyes fail to produce sufficient lubrication
-my.clevelandclinic.org
-ncbi.nlm.nih.gov
-. DED is a leading reason for eye care visits and can significantly impact quality of life. This project applies machine learning to patient lifestyle and health data to predict the presence
-of dry eye disease. The goal is to identify key factors associated with DED and build predictive models that could help screen at-risk individuals.
+Dry Eye Disease (DED) is a common ocular surface condition in which the tear film becomes unstable, leading to eye discomfort and visual disturbances.
+Symptoms can include burning, itching, redness, and blurred vision as the eyes fail to produce sufficient lubrication.
+DED is a leading reason for eye care visits and can significantly impact quality of life.
 
-Dataset
+This project applies machine learning to patient lifestyle and health data to predict the presence of dry eye disease.
+The goal is to identify key factors associated with DED and build predictive models to help screen at-risk individuals.
 
-The data are provided in the file Dry_Eye_Dataset.csv (loaded in the notebook). It contains patient records with features including demographics and health/lifestyle factors.
-Example features include Gender, Age, Sleep duration/quality, Stress level, Blood pressure, Heart rate, Daily steps, Physical activity, and Lifestyle factors (caffeine use, smoking, alcohol, etc.),
-as well as ocular symptoms (eye strain, redness, itchiness). The target column is “Dry Eye Disease” (e.g. Yes/No diagnosis). In the notebook, the data are examined (no duplicate or missing values found)
-and preprocessed: categorical variables (like blood pressure category and sleep category) are one-hot encoded, and selected numerical columns are standardized. Multicollinearity is checked (e.g. by VIF),
-and highly correlated variables (such as diastolic blood pressure) are dropped before modeling.
+📁 Dataset
 
-Methodology
+The dataset used is Dry_Eye_Dataset.csv, containing patient records with features such as:
 
-The analysis proceeds as follows:
+Demographics: Gender, Age
 
-Train/Test Split: The processed data are split into training (70%) and test (30%) sets (stratified by the target).
+Health & Lifestyle: Sleep duration/quality, Stress level, Blood Pressure, Heart Rate
 
-Preprocessing: Numeric features (e.g. age, sleep hours) are scaled with StandardScaler. Categorical features (BP category, sleep category, screen time category) are converted to dummy indicators. Any constant or collinear features are removed.
+Activity: Daily steps, Physical activity
 
-Feature Selection: Recursive Feature Elimination (RFE) is applied to select the most relevant predictors for each model. This yields a subset of features (e.g. gender, age, sleep metrics, stress, vital signs, and symptom indicators) used in final models.
+Habits: Caffeine use, Smoking, Alcohol consumption
 
-Models: Various classification algorithms are trained and compared, including Logistic Regression, Decision Tree (and tuned Decision Tree), Random Forest, AdaBoost, Gradient Boosting, XGBoost, LightGBM, and an ensemble (Voting classifier) combining multiple models.
+Ocular symptoms: Eye strain, Redness, Itchiness
 
-Hyperparameter Tuning: Grid search (or manual tuning) is used for key models (e.g. tuning the Decision Tree entropy criterion and depth, and the AdaBoost base estimator).
+Target variable: Dry Eye Disease (Yes/No)
 
-Evaluation: Models are evaluated on accuracy, precision, recall, and F1-score. The notebook computes classification reports and plots confusion matrices for both train and test sets. ROC-AUC and precision-recall curves are also available, focusing on detecting positive (Dry Eye) cases.
+Preprocessing Steps
 
-Usage
+No missing or duplicate values found
 
-To reproduce the analysis, ensure the dataset file (Dry_Eye_Dataset.csv) is in the working directory and run the notebook in a Python environment. For example:
+One-hot encoding applied to categorical variables (e.g., BP category, sleep category)
 
-# Install required Python libraries (if not already installed)
+Selected numerical columns standardized
+
+Multicollinearity checked using VIF; highly correlated features (e.g., Diastolic BP) removed
+
+🧠 Methodology
+1. Train/Test Split
+
+Data split into 70% training and 30% testing
+
+Stratified by the target variable
+
+2. Preprocessing
+
+Numeric features scaled using StandardScaler
+
+Categorical features converted to dummies
+
+Removed constant or highly collinear features
+
+3. Feature Selection
+
+Used Recursive Feature Elimination (RFE)
+
+Identified the most relevant predictors, including demographics, sleep metrics, stress, vital signs, and symptoms
+
+4. Models Trained
+
+Logistic Regression
+
+Decision Tree (and tuned Decision Tree)
+
+Random Forest
+
+AdaBoost
+
+Gradient Boosting
+
+XGBoost
+
+LightGBM
+
+Voting Classifier (ensemble)
+
+5. Hyperparameter Tuning
+
+Grid search or manual tuning for Decision Tree, AdaBoost, etc.
+
+Adjusted depth, entropy, and base estimators
+
+6. Evaluation Metrics
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-score
+
+Confusion matrices
+
+ROC-AUC and Precision-Recall curves
+
+▶️ Usage
+
+Ensure the dataset (Dry_Eye_Dataset.csv) is in the working directory, then install dependencies:
+
+# Install required Python libraries
 pip install numpy pandas matplotlib seaborn scikit-learn xgboost lightgbm shap
 
-# Launch Jupyter Notebook and open the analysis
+
+Launch Jupyter Notebook:
+
 jupyter notebook
-# In the browser interface, open Dry_eye_disease.ipynb and run all cells
 
 
-Alternatively, you can execute the notebook cells sequentially using any compatible environment (e.g., JupyterLab or VSCode). The notebook is fully self-contained and will load the data, perform EDA, train models, and output results.
+Then open Dry_eye_disease.ipynb and run all cells.
 
-Dependencies
+📦 Dependencies
 
-Key Python libraries used in this project include:
+Key Python libraries:
 
-numpy, pandas – for data manipulation
+numpy, pandas — Data manipulation
 
-matplotlib, seaborn – for plotting
+matplotlib, seaborn — Visualization
 
-scikit-learn – for preprocessing, modeling (LogisticRegression, DecisionTree, RandomForest, AdaBoost, GradientBoosting, SVM, metrics, etc.)
+scikit-learn — Preprocessing & ML models
 
-XGBoost – for XGBoostClassifier
+XGBoost — XGBoostClassifier
 
-LightGBM – for LGBMClassifier
+LightGBM — LGBMClassifier
 
-statsmodels – (imported for statistical tests)
+statsmodels — Statistical analysis
 
-SHAP – for model interpretability (SHAP values)
+SHAP — Model explainability
 
-warnings – to suppress non-critical warnings
+A requirements.txt can be generated from these packages if needed.
 
-A requirements.txt can be generated from the imports above, or install packages as needed.
+📊 Results
 
-Results
+The Random Forest classifier performed best, achieving:
 
-The best-performing model in this analysis was a Random Forest classifier, which achieved about 70.4% accuracy on the test set. This model had high sensitivity (recall ≈ 93.6%) for detecting dry eye cases, though its precision was moderate (≈ 71.2%) – indicating it predicted many positive cases (catching most true cases) at the cost of some false positives. The weighted F1-score was around 0.66. Other models (e.g. tuned Decision Tree, XGBoost, or the Voting ensemble) achieved similar overall accuracy (typically in the high 60% to ~70% range). These results suggest that the available features carry predictive signal but also highlight class imbalance (many more non-DED cases) and room for improvement.
+Accuracy: ~70.4%
 
-Conclusion
+Recall (DED cases): ~93.6%
 
-This study demonstrates a pipeline for predicting Dry Eye Disease from survey/health data. The models show moderate predictive ability, with the Random Forest capturing most true dry eye cases but with some false alarms. These findings imply that lifestyle and health factors (sleep quality, blood pressure, screen time, etc.) are indeed correlated with DED risk, but additional data or features may be needed for more accurate predictions. In practice, such models could help flag at-risk patients for further eye examinations or preventive measures. Further work could refine feature engineering, address class imbalance, or incorporate clinical measurements to improve accuracy.
+Precision: ~71.2%
+
+Weighted F1-score: ~0.66
+
+Other models (e.g., tuned Decision Tree, XGBoost, Voting ensemble) achieved similar accuracy (upper 60% to ~70%).
+
+These results indicate:
+
+Features carry meaningful predictive signal
+
+Class imbalance affects precision
+
+Further improvements are possible with more data or additional features
+
+✅ Conclusion
+
+This project demonstrates a complete machine-learning pipeline for predicting Dry Eye Disease from health and lifestyle survey data.
+
+Key insights:
+
+Random Forest performed best, capturing most true DED cases
+
+Moderate overall accuracy due to class imbalance
+
+Lifestyle factors (sleep, blood pressure, screen time) correlate with DED risk
+
+Additional clinical data could improve precision and reduce false positives
+
+Future improvements may include advanced feature engineering, oversampling techniques, integration of clinical measures, or deep learning models.
